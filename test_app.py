@@ -1,4 +1,6 @@
-from app import say_hello
+from app import app
 
-def test_say_hello():
-    assert say_hello() == "Hello, CI/CD!"
+def test_index():
+    client = app.test_client()
+    response = client.get("/")
+    assert response.data == b"Hello from Flask with CI/CD!"
